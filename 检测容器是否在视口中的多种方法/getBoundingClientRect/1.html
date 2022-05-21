@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getBoundingClientRect</title>
+    <style>
+        .box {
+            position: relative;
+            height: 2000px;
+        }
+
+        .box-target {
+            position: absolute;
+            top: 1000px;
+            height: 200px;
+            width: 200px;
+        }
+
+        .box-target img {
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>
+        <div class="box-target">
+            <img id="box-target" src="imgs/img1.webp"></img>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let boxTarget = document.getElementById("box-target");
+
+    function isInViewPort(element) {
+        const viewWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+        const {
+            top,
+            right,
+            bottom,
+            left,
+        } = element.getBoundingClientRect();
+        console.log(top >= 0 &&
+            left >= 0 &&
+            right <= viewWidth &&
+            bottom <= viewHeight)
+        return (
+            top >= 0 &&
+            left >= 0 &&
+            right <= viewWidth &&
+            bottom <= viewHeight
+        );
+    }
+
+    window.addEventListener("scroll", () => isInViewPort(boxTarget))
+</script>
+</html>
