@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手动计算容器是不是在视口中</title>
+    <style>
+        .box {
+            position: relative;
+            height: 2000px;
+        }
+
+        .box-target {
+            position: absolute;
+            top: 1000px;
+            height: 200px;
+            width: 200px;
+        }
+
+        .box-target img {
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>
+        <div class="box-target">
+            <img id="box-target" src="imgs/img1.webp"></img>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let boxTarget = document.getElementById("box-target")
+    function isInViewPortOfOne(el) {
+        // viewPortHeight 兼容所有浏览器写法
+        const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        const offsetTop = el.offsetTop
+        const scrollTop = document.documentElement.scrollTop
+        /**
+         * 核心就是 (容器距离父元素的高度 - scrollTop已经卷去的高度) 在视窗的高度内就是出现了，否则就是没出来
+         * */
+        const top = offsetTop - scrollTop
+        // console.log(`视口高度${viewPortHeight},元素距离父元素顶端高度${offsetTop},滚动的高度${scrollTop},差值${top},${top <= viewPortHeight}`)
+        return top <= viewPortHeight
+    }
+
+    // 监听的对象也要根据实际情况来判断
+    document.addEventListener("scroll",(params) => isInViewPortOfOne(boxTarget))
+</script>
+</html>
