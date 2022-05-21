@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getBoundingClientRect</title>
+    <style>
+        .box {
+            position: relative;
+            height: 2000px;
+        }
+
+        .box-target {
+            position: absolute;
+            top: 1000px;
+            height: 200px;
+            width: 200px;
+        }
+
+        .box-target img {
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div>
+        <div class="box-target">
+            <img id="box-target" src="imgs/img1.webp"></img>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let target = document.getElementById("box-target")
+    let config = {
+        // 触发条件： 1表示完全出现，0表示出现一点点就
+        threshold: [1]
+    };
+    let Callback = function Callback(e) {
+        e = Array.from(e);
+        e.forEach((item, i) => {
+            let {isIntersecting, target} = item;
+            if (isIntersecting) {
+                console.log("出现了")
+            }
+        })
+    }
+    let ob = new IntersectionObserver(Callback, config);
+    ob.observe(target);
+</script>
+</html>
