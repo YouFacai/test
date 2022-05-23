@@ -1,0 +1,1 @@
+Promise.resolve(1).then(2).then(res => console.log(res))
