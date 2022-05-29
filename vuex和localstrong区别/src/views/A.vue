@@ -9,15 +9,16 @@
     <div @click="$store.commit('setlist')">
       修改list
     </div>
+    <div @click="$store.commit('c/setCC')">2323</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "AB",
-  methods:{
-    update(){
-      window.localStorage.setItem('name','我已经改动')
+  methods: {
+    update() {
+      window.localStorage.setItem('name', '我已经改动')
     }
   }
 }

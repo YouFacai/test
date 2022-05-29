@@ -1,7 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import c from './C/index.js'
 
 Vue.use(Vuex)
+
+const myPlugin = store => {
+  // 当 store 初始化后调用
+  store.subscribe((mutation, state) => {
+    console.log(mutation,state,'@@@')
+  })
+}
 
 export default new Vuex.Store({
   state: {
@@ -22,5 +30,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-  }
+    c:c
+  },
+  plugins:[myPlugin]
 })
