@@ -2,7 +2,7 @@
   <div style="justify-content: center;display: flex;align-items: center;margin-top: 30%">
     <div>
       <div style="text-align: center">👇👇👇👇戳我👇👇👇👇</div>
-      <div @click="test" style="margin-top: 20px">尤前途祝雨🌳<B>2022/6/5</B> 生日快乐🌹🌹🌹</div>
+      <div @click="test" style="margin-top: 20px">尤前途祝雨🌳<B>2022/6/6</B> 生日快乐🌹🌹🌹</div>
       <div style="text-align: center;margin-top: 10px">在一起：{{ renderTime }}</div>
     </div>
   </div>
