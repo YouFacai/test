@@ -6,7 +6,7 @@ function curing() {
         if(!args.length){
             return  arr.reduce((pre,next)=>pre + next)
         }
-        add["toString"] = ()=>arr.reduce((pre,next)=>pre + next)
+        // add["toString"] = ()=>arr.reduce((pre,next)=>pre + next)
         return add
     }
 }
