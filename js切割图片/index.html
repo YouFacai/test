@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            display: flex;
+        }
+
+        .img1 {
+            flex: 1;
+            height: 2000px !important;
+        }
+
+        .img1 img{
+            width: 100% !important;
+
+        }
+        .img2 {
+            flex: 1;
+        }
+        #canvas-cut {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="img1"><img
+            src="./imgs/1.png"
+            alt="" ></div>
+    <div class="img2">
+        <canvas id="canvas-cut"></canvas>
+    </div>
+</div>
+<script>
+   function f() {
+       <!--  图片切割成多少份  -->
+       let stepx =200, stepy = 200;
+       // canvas大小
+       let canvasx , canvasy ;
+       var canvas = document.getElementById('canvas-cut');
+       var imgArtwork = document.getElementsByClassName("img1")[0]
+       var img = new Image();
+       var cut = canvas.getContext('2d');
+
+       window.addEventListener('resize',(e) => {
+           if(document.body.clientWidth >=700 && document.body.clientWidth <=1000){
+               console.log(200)
+               stepx =200;
+               stepy = 200;
+           }
+           if(document.body.clientWidth >1000){
+               stepx =300;
+               stepy = 300;
+               console.log(300)
+           }
+           if(document.body.clientWidth < 400){
+               stepx =100;
+               stepy = 100;
+               console.log(100)
+           }
+
+           init();
+       })
+
+       function init() {
+           let SRC = "./imgs/1.png"
+           img.src = SRC;
+           // //处理toDataURL遇跨域资源导致的报错
+           img.crossOrigin = 'Anonymous';
+           img.onload = function () {
+               canvasx = imgArtwork.offsetWidth
+               canvasy = imgArtwork.offsetHeight
+               canvas.width = canvasx * 2
+               canvas.height = canvasy * 2
+               cuttingImg(stepx, stepy)
+           };
+       }
+
+       //  图片切割
+       function cuttingImg(stepx, stepy) {
+           // 每一张图片的宽高
+           let stepW = Math.floor(canvasx / stepx) , stepH = Math.floor(canvasy / stepy)
+           for (let i = 0; i <= stepy + 2000; i++) {
+               for (let j = 0; j <= stepx+ 2000; j++) {
+                   let x = j * stepW
+                   let y = i * stepH
+                   cut.drawImage(img, x, y, stepW, stepH, x, y, stepW-1, stepH-1)
+               }
+           }
+           colorReversal()
+       }
+
+       //颜色反转
+       function colorReversal() {
+           myImage = cut.getImageData(0, 0, canvasx * 2, canvasy * 2);
+           for (var i = 0; i < myImage.data.length; i += 4) {
+               var myRed = myImage.data[i];
+               var myGreen = myImage.data[i + 1];
+               var myBlue = myImage.data[i + 2];
+               myGray = parseInt((myRed + myGreen + myBlue) / 3);
+               myImage.data[i] = myGray;
+               myImage.data[i + 1] = myGray;
+               myImage.data[i + 2] = myGray;
+           }
+           cut.putImageData(myImage,0,0)
+       }
+
+       init()
+   }
+
+   f()
+</script>
+</body>
+</html>
+
