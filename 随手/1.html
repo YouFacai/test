@@ -1,35 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        .a {
-            position: relative;
-            background: red;
-        }
-        .b {
-            position: absolute;
-            height: 100%;
-            z-index: 3;
-            float: left;
-            background: yellow;
-        }
-        .c {
-            position: absolute;
-            height: 100%;
-            z-index: 2;
-            float: left;
-            background: green;
-        }
-    </style>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
 </head>
 <body>
-    <div class="a">
-        nihao
-        <div class="b">nihao2</div>
-        <div class="c">nihao3</div>
+    <div id="k1">
+        1
+        <div id="k2">
+            2
+            <div id="k3">
+                3
+            </div>
+        </div>
     </div>
+    <script>
+        let fn1 = function (e) {
+            console.log(1)
+        }
+        let fn2 = function (e) {
+            e.stopPropagation()
+            console.log(2)
+        }
+        let fn3 = function (e) {
+
+            console.log(3)
+        }
+
+
+        k1.onclick = fn1
+        k2.onclick = fn2
+        k3.onclick = fn3
+    </script>
 </body>
-<script src="1.js"></script>
 </html>

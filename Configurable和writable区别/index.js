@@ -4,6 +4,7 @@ global.obj = {
     like: [1, 2, 3]
 }
 
+//configurable 控制是否可以删除 writable 控制是否可以修改(赋值)
 Object.defineProperty(global,'obj',{
     /**
      * 只读
