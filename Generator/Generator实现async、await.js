@@ -24,25 +24,25 @@ function fetchData2() {
  *
  * */
 function run(taskDef) {
-   let myGenerator = taskDef();
-   let result = myGenerator.next();
+    let generator = taskDef();
+    let result = generator.next();
 
-   function next(){
-       if(!result.done){
-           if(result.value instanceof  Promise){
-               result.value.then(res=>{
-                   result = myGenerator.next(res)
-                   next()
-               })
-           }else{
-               result = myGenerator.next(result.value)
-               next()
-           }
-       }
-   }
-
-   next()
+    function next() {
+        if(!result.done){
+            if(result.value instanceof  Promise){
+                result.value.then(res=>{
+                    result = generator.next(res);
+                    next()
+                })
+            }else{
+                result = generator.next(result.val)
+                next();
+            }
+        }
+    }
+    next()
 }
+
 
 //调用
 run(function* () {
