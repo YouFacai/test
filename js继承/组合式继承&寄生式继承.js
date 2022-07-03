@@ -19,7 +19,7 @@ person.prototype.sayfather = function () {
  * 优势 ： 避免了两次调用 Person函数
  * */
 son.prototype = Object.create(person.prototype)
-
+son.constructor = son
 let son1 = new son();
 let son2 = new son();
 

@@ -26,24 +26,15 @@ function settimer3() {
 }
 
 function run(args) {
-    args = [...args];
-    let result = Promise.resolve();
-    let arr = []
-    args.forEach(ajax => {
-        /**
-         * 关键就是重新给result赋值
-         * 只有第二个then状态确定了才会将下一次循环的result Promise状态变成fullfill
-         *
-         * // 同理可以顺序输出，但是就不做收集了
-         * result = result.then(ajax)
-         * */
-        result = result.then(ajax).then(res => {
-            // 只有这里的状态确定了返回歌Promise，下一次result.then(ajax)中的ajax才会执行
-            arr.push(res)
-            return arr
+    let promise = Promise.resolve();
+    let result = [];
+    for(let ajax of args){
+        promise = promise.then(ajax).then(res=>{
+            result.push(res);
+            return result
         })
-    })
-    return result
+    }
+    return promise
 }
 
 /**

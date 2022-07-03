@@ -1,23 +1,17 @@
-let obj = {
-    name: 'yzl',
-    like: [1, 2, 3]
-}
-
-function deepClone(target, map = new Map()) {
-    let temp = Array.isArray(target) ? [] : {}
-    if (map.has(target)) return map.get(target)
-    for (let key in target) {
-        let val = target[key]
-        map.set(target, temp)
-        if (typeof val !== "object") {
-            temp[key] = val;
-        } else {
-            temp[key] =  deepClone(val, map)
-        }
+function curing(){
+    let result = [];
+    return function add(...args) {
+         if(!args.length){
+             return result.reduce((pre,next)=>pre+ next);
+         }
+         add["toString"] =()=> result.reduce((pre,next)=>pre+ next);
+         result = result.concat(args);
+         return add
     }
-    return temp
 }
 
-let obj2 = deepClone(obj);
-obj.like.push(4555)
-console.log(obj2)
+let add = curing()
+
+console.log(add(1,2,3)(4)(5)())
+alert(add(1,2,3)(4)(5))
+

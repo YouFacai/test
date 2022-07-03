@@ -17,6 +17,6 @@ person.prototype.sayfather = function () {
 }
 
 // 报错call继承会导致父原型上的方法丢失
-son1.sayfather()
+// son1.sayfather()
 
 
