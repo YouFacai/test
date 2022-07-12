@@ -8,7 +8,6 @@
 let arr = [1,2233,4,6,322,23,1123];
 
 function merge(arr1,arr2){
-
     let temp = [],key = 0;
     while(arr1.length && arr2.length){
         let val1 = arr1[0],val2 = arr2[0]

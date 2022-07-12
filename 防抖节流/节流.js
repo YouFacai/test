@@ -1,19 +1,19 @@
 btn.onclick = fd(fn, 1000)
 
-function fd(f, time) {
+function fd(f, wait) {
     let timer = null, pre = 0;
     return function () {
-        let wait = time - (+new Date() - pre);
-        if (wait < 0) {
+        let diff = wait - (+new Date() - pre);
+        if (diff < 0) {
+            f();
             clearTimeout(timer);
-            fn();
-            pre = +new Date()
-        } else if (!time) {
+            pre = +new Date();
+        } else if(!timer) {
             timer = setTimeout((params) => {
+                f();
                 clearTimeout(timer);
-                fn();
-                pre = +new Date()
-            }, 0)
+                pre = +new Date();
+            }, diff)
         }
     }
 }

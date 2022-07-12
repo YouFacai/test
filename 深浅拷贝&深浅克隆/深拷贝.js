@@ -48,5 +48,5 @@ console.log(obj, deepObj)
 
 
 function myType(target) {
-    return Object.prototype.toString.call(target).match(/\s(.*)\]/)[1]
+    return Object.prototype.toString.call(target).match(/\s(.*)/)[1]
 }
