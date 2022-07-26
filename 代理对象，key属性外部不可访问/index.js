@@ -24,3 +24,4 @@ let api = new Proxy(obj, {
  * obj.key 可以访问   console.log(obj.key)
  * */
 console.log(obj.key)
+

@@ -5,33 +5,27 @@
  *      + 一个用来分割数组或者链表
  *      + 一个用来比较
  * */
-let arr = [1,2233,4,6,322,23,1123];
-
-function merge(arr1,arr2){
-    let temp = [],key = 0;
+let nums = [3,2,1,4,6,8]
+// 归并排序
+function merge(arr1,arr2) {
+    let result = [];
     while(arr1.length && arr2.length){
-        let val1 = arr1[0],val2 = arr2[0]
-        if(val1 >= val2){
-            temp.push(val2)
-            arr2.shift()
+        let p1 = arr1[0],p2= arr2[0];
+        if(p1 <= p2){
+            result.push(arr1.shift());
         }else{
-            temp.push(val1)
-            arr1.shift()
+            result.push(arr2.shift());
         }
     }
-    if(!arr1.length) temp = temp.concat(arr2)
-    if(!arr2.length) temp = temp.concat(arr1)
-    return temp
+    if(arr1.length) result = result.concat(arr1);
+    if(arr2.length) result = result.concat(arr2);
+    return result
 }
 
-function splitArr(arr) {
-    let len = arr.length;
-    if(len < 2) return  arr
-    return merge(splitArr(arr.slice(0,~~(len/2))),splitArr(arr.slice(~~(len/2),arr.length)))
+function split(arr) {
+    if(arr.length < 2) return arr;
+    let mid = ~~(arr.length / 2);
+    return merge(split(arr.slice(0,mid)),split(arr.slice(mid,arr.length)))
 }
 
-function sort(arr) {
-    return splitArr(arr)
-}
-
-console.log(sort(arr))
+console.log(split(nums))

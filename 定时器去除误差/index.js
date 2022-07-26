@@ -3,16 +3,17 @@ function fn() {
 }
 
 function _settimer(fn,wait) {
-    let timer = null,count = 0;
-    let start = +new Date();
-    function run(){
-        let diff = +new Date() - (wait * count++ + start);
+    let timer = null, start = +new Date(),count=0;
+
+    function run() {
+        let diff = +new Date() - (start + count++ * wait);
         fn();
-        timer = setTimeout(run,wait -diff)
+        setTimeout(run,wait-diff)
     }
-    run();
+    run()
+
     return {
-        cancel : function () {
+        cancel :function () {
             clearTimeout(timer)
         }
     }
