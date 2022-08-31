@@ -2,8 +2,9 @@ function failQuickSort(arr,l,r) {
     let key = arr[l];
     let i = l,j = r;
     while(i < j){
-        while(i<j && arr[j]<=key)j--;
-        while(i<j && arr[i]>=key)i++;
+        // 一定要j先动,i先动有一部分排序不到
+        while(i<j && arr[j]>=key)j--;
+        while(i<j && arr[i]<=key)i++;
         if(i<j){
             let temp = arr[i];
             arr[i] = arr[j];
