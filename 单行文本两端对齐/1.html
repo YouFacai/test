@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .demo > div {
+            display: flex;
+        }
+         .name {
+            text-align: justify;
+            display: inline-block;
+            width: 100px;
+        }
+        .name::after{
+            content: '';
+            height: 0;
+            width: 100%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <div>
+        <div class="name">名字</div> :
+        <div>
+            <input type="text"/>
+        </div>
+    </div>
+    <div>
+        <div class="name">名字</div> :
+        <div>
+            <input type="text"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
