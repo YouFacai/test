@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+</head>
+<body>
+<div id="btn">
+    发送消息
+</div>
+<script src="./broadcast.js" type="module"></script>
+<script type="module">
+    import {broadcast} from "./broadcast.js";
+    btn.onclick = function () {
+        broadcast.postMessage("你好我是B")
+    }
+</script>
+</body>
+</html>
