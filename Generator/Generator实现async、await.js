@@ -22,6 +22,11 @@ function fetchData2() {
  *    判断yield后面的是不是一个promise，如果是promise我们就拿到他的res使用let result =
  *    myGenerator.next(res)把res赋值给上一个yield，同时改变result进行下一个next()，直到done为true
  *
+ *    Generator口诀：
+ *      + 调用函数后生成生成器，立马停止
+ *      + 生成器.next() 会到达下一个yield
+ *      + 上一个yield的返回值由下一次生成器.next(这里的值决定)
+ *
  * */
 function run(taskDef) {
     let generator = taskDef();
@@ -30,6 +35,7 @@ function run(taskDef) {
     function next() {
         if(!result.done){
             if(result.value instanceof  Promise){
+                console.log(result.value)
                 result.value.then(res=>{
                     result = generator.next(res);
                     next()
