@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sha</title>
+</head>
+<body>
+
+<script type="module">
+    // 方法一 方法二 都会导入接口
+    // 方法一
+    // import like,{a} from "./index1.js"
+
+    //方法二
+    // import {default as like , a} from "./index1.js"
+    // console.log(like,a)
+
+    //方法三 这样智慧加载模块但是不会导入接口
+    import("./index1.js")
+</script>
+
+</body>
+</html>
