@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .item {
+            position: absolute;
+            top: 0;
+            background: wheat;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="item" id="box1">点我1</div>
+<div class="item" id="box2">点我2</div>
+
+<script>
+    box1.addEventListener('touchstart',function (e) {
+        console.log(111)
+    })
+    box2.addEventListener('touchstart',function (e) {
+        console.log(222)
+        e.target.style.display = "none"
+    })
+</script>
+</body>
+</html>
