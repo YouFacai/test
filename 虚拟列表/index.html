@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>虚拟列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        .eye {
+            height: 100%;
+            overflow: auto;
+            position: relative;
+        }
+
+        .v-list {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .render-list {
+            left: 0;
+            right: 0;
+            top: 0;
+            position: absolute;
+            text-align: center;
+        }
+
+        .render-item {
+            text-align: center;
+            height: 80px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="eye" onscroll="scrollEye(this)">
+    <div class="v-list"></div>
+    <div class="render-list"></div>
+</div>
+<script>
+    let dataList = new Array(500).fill(0).map((_, index) => index + 1)
+    let itemHeight = 80, renderList = Math.ceil(screen.height / itemHeight);
+    let start = 0, end = start + renderList;
+    let scrollTop = 0;
+    // 要渲染的数据
+    let renderListData = dataList.slice(start, end)
+
+    //    展位列表的高度
+    let vList = document.getElementsByClassName("v-list")[0];
+    vList.style.height = dataList.length * itemHeight + "px"
+
+    let renderListBox = document.getElementsByClassName("render-list")[0];
+    render()
+
+    // 监听滚动
+    function scrollEye(e) {
+        start = ~~(e.scrollTop / itemHeight);
+        end = start + renderList;
+        scrollTop = e.scrollTop - (e.scrollTop % itemHeight)
+        render()
+    }
+
+    // 渲染视图
+    function render() {
+        let str = ""
+        renderListData = dataList.slice(start, end);
+        renderListData.forEach(item => {
+            str += `
+                <div class="render-item">
+                    ${item}
+                </div>
+            `
+        })
+        renderListBox.innerHTML = str
+        renderListBox.style.transform =`translateY( ${scrollTop}px)`
+    }
+</script>
+</body>
+</html>
