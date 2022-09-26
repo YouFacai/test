@@ -10,9 +10,9 @@ console.log(arr)
 let len = arr.length;
 for(let i = 0;i<len;i++){
     let key = ~~(Math.random() * len);
-    len--;
     let temp = arr[key];
-    arr[key] = arr[arr.length-1]
-    arr[arr.length-1] = temp
+    arr[key] = arr[len-1]
+    arr[len-1] = temp
+    len--;
 }
 console.log(arr)
