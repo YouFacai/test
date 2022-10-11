@@ -9,7 +9,14 @@ function doExchange(arr, depth) {
     }
 }
 
+// var results声明的变量是全局的（全局下）
+
 function test(arr) {
+    /**
+     * results声明的变量是全局的
+     *
+     * var results声明的变量是局部的（函数中）
+     * */
     results = [];
     result = [];
     doExchange(arr, 0);
