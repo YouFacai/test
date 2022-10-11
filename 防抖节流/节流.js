@@ -6,12 +6,12 @@ function fd(f, wait) {
         let diff = wait - (+new Date() - pre);
         if (diff < 0) {
             f();
-            clearTimeout(timer);
+            timer = clearTimeout(timer);
             pre = +new Date();
         } else if(!timer) {
             timer = setTimeout((params) => {
                 f();
-                clearTimeout(timer);
+                timer = clearTimeout(timer);
                 pre = +new Date();
             }, diff)
         }
