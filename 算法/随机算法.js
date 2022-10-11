@@ -8,7 +8,7 @@ console.log(arr)
 
 // 原地处理
 let len = arr.length;
-for(let i = 0;i<len;i++){
+for(let i = 0;i<arr.length;i++){
     let key = ~~(Math.random() * len);
     let temp = arr[key];
     arr[key] = arr[len-1]

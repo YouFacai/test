@@ -13,6 +13,8 @@ let arr = [1,[2,3,[4,5]]];
 // }
 //
 // console.log(_flat(arr,[]))
+let obj = {};
+arr = [];
 
 // 方法二
 // function _flat(arr) {
@@ -30,3 +32,5 @@ function _flat(arr) {
 }
 
 console.log(_flat(arr))
+({foo:obj.prop,foo:arr[0]} = {foo:123,bar:true})
+console.log(obj,arr)
