@@ -1,12 +1,16 @@
-btn.onclick = fd(fn,1000)
+btn.onclick = fd(fn,1000,true)
 
-function fd(f,timer) {
+function fd(f,timer,direction) {
     let time = null
+
     return function () {
+        let isok = direction && time == null
         clearTimeout(time)
         time = setTimeout((params) => {
-            f()
+            if(!direction) f()
+            time = clearTimeout(time)
         },timer)
+        if(isok) f()
     }
 }
 
