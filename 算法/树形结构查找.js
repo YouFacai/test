@@ -1,19 +1,17 @@
 function fn(tree, name){
     //To Do
-    let result = {},isok = false;
-    function fn(child) {
-        if(child.length == 0) return null
-        for(let i = 0;i < child.length;i++){
-            let item = child[i];
-            if(!isok && (item.name == name)){
-                isok = true;
+    let result = {};
+    function get(tree) {
+        for(let item of tree){
+            if(item.name == name){
                 result = item
+                return ;
             }else if(item.children){
-                fn(item.children)
+                get(item.children)
             }
         }
     }
-    fn(tree.children)
+    get(tree.children)
     return result
 }
 

@@ -7,8 +7,7 @@ Array.prototype._reduce = function reduce(callback,initnum){
         index = 0;
     }
     //循环累加
-    for(let i = 0;i<this.length;i++){
-        if(index == this.length) return  result
+    for(let i = index;i<this.length;i++){
         result = callback(result,this[index++],i);
     }
     return result;

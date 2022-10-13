@@ -44,7 +44,7 @@ function _race(args) {
     })
 }
 
-_race([fn1,fn2]).then(res=>{
+_all([fn1,fn2]).then(res=>{
     console.log(res)
 }).catch(err=>{
     console.log(err)
