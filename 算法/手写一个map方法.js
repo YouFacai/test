@@ -1,6 +1,6 @@
 Array.prototype._map = function (callback,obj) {
     let len = this.length,result = [];
-    if(!len.length) return result;
+    if(!len) return result;
 
     for(let i = 0;i<this.length;i++){
         result[i] =  callback.call(obj,this[i],i,this)

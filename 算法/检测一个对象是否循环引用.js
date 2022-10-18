@@ -19,4 +19,5 @@ let obj = {
 
 }
 obj.a = obj
+
 console.log(_fn(obj))
